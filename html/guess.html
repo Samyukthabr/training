@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+<h4>Guess number</h4>
+<script>
+const randomNumber = Math.floor(Math.random() * 10) + 1;
+const userGuess = prompt("Guess a number between 1 and 10");
+const guess = parseInt(userGuess);
+
+if (guess === randomNumber) {
+  console.log("Good work!");
+} else {
+  console.log("Not matched.");
+}
+
+</script>
+
+</body>
+</html>

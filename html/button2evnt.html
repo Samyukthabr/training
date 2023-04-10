@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adding  Event listener toButton2</title>
+</head>
+<body>
+      <button id="myButton">Click here</button>
+       <button id="mybutton1">Click next</button>
+	
+      <p id="my paragraph">MITM is situated at a beautiful, enchanting and sprawling landscape about 3 kms behind K.R.Mills. The institute is founded by a group of eminent people recognised for their eminence in the field of science and engineering technology. Many of them have served at the highest levels of AICTE and University.
+The college is equipped with all modern learning aids to make teaching-learning process a pleasure. The highly qualified staff is its asset.
+The college has to its credit the highest number of admissions in the academic year 2007-08 among the 16 newly opened engineering colleges in Karnataka. </p>
+
+<script>
+var button = document.getElementById("myButton");
+const paragraph=document.getElementById("my paragraph");
+var button1=document.getElementById("mybutton1");
+button.addEventListener("click", function() {
+  paragraph.innerHTML="The button was clicked!";
+});	
+button1.addEventListener("click", function() {
+  paragraph.innerHTML="The button2 was clicked!";
+});
+</script>
+
+</body>
+</html>

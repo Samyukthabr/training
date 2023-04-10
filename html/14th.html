@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>List Example</title>
+    <style>
+      .selected {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Select an item:</h1>
+
+    <ul>
+      <li onclick="selectItem(this)">Apple</li>
+      <li onclick="selectItem(this)">Orange</li>
+      <li onclick="selectItem(this)">Strawberry</li>
+      
+    </ul>
+
+    <button onclick="clearSelection()">Clear Selection</button>
+
+    <script>
+      function selectItem(item) {
+        var items = document.getElementsByTagName("li");
+        for (var i = 0; i < items.length; i++) {
+          items[i].classList.remove("selected");
+        }
+        item.classList.add("selected");
+      }
+
+      function clearSelection() {
+        var items = document.getElementsByTagName("li");
+        for (var i = 0; i < items.length; i++) {
+          items[i].classList.remove("selected");
+        }
+      }
+    </script>
+  </body>
+</html>

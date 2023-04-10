@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>List Item Selection</title>
+	<style>
+		.selected {
+			background-color: yellow;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<h1>List Item Selection</h1>
+	<p>Click an item in the list to select it:</p>
+	<ul id="item-list">
+		<li>Apple</li>
+		<li>Orange</li>
+		<li>Strawberry</li>
+	</ul>
+
+	<script>
+		const itemList = document.getElementById("item-list");
+		const items = itemList.getElementsByTagName("li");
+
+		for (let i = 0; i < items.length; i++) {
+			items[i].addEventListener("click", function() {
+				// Remove "selected" class from all other items
+				for (let j = 0; j < items.length; j++) {
+					items[j].classList.remove("selected");
+				}
+
+				// Add "selected" class to clicked item
+				this.classList.add("selected");
+			});
+		}
+	</script>
+</body>
+</html>

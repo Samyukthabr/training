@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+       body {
+			background-color: lightgrey;
+			
+background-image:url("C:\\Users\\ramessa\\OneDrive - Tecnotree\\Documents\\frm.png");
+width= 100%;
+		}
+
+		#title {
+			text-align: center;
+	          }
+
+              img {
+			
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 85%;
+             }
+
+		
+
+		
+		
+	</style>
+</head>
+<body>
+       
+        
+       <h2 id="title"> Employee form </h2>
+       <form id="myForm">
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name"><br><br>
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email"><br><br>
+              <label for="contact number">CONTACT number:</label>
+		<input type="number" id="contact number" name="contact number"><br><br>
+               <label for="employee id">EMPLOYEE id:</label>
+		<input type="number" id="employee id" name="employee id"><br><br>
+		<input type="submit" value="Submit"><br><br>
+	</form>
+
+	
+	<script>
+            var form = document.getElementById("myForm");
+            form.addEventListener("submit", function(event) {
+		      event.preventDefault();
+                  var name = document.getElementById("name").value;
+			var email = document.getElementById("email").value;
+                  alert("Name: " + name + "\nEmail: " + email);
+		});
+	</script>
+       <div id="img">
+      		<img src="C:\Users\ramessa\OneDrive - Tecnotree\Documents\tt.png" id="image">
+       </div>
+</body>
+</html>

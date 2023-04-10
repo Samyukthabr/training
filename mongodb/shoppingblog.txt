@@ -1,0 +1,61 @@
+{
+"BlogPosts":[
+{
+      "_id": ObjectID,
+	"title": String,
+	"content": String,
+	"author": String,
+	"date": Date,
+	"tags": Array,
+      "comments": Array,
+}
+]
+"Products":[
+{
+
+	"_id": ObjectID,
+	"name": String,
+	"description": String,
+	"price": Number,
+	"image": String,
+	"category": String,
+}
+]
+"Categories":[
+{
+
+	"_id": ObjectID,
+	"name": String,
+	"description": String,
+	"parentCategory": ObjectID,
+}
+]
+"Users":[
+{
+
+	"_id": ObjectID,
+	"name": String,
+	"email": String,
+	"password": String,
+	"role": String,
+}
+]
+"Comments":[
+{
+
+	"_id": ObjectID,
+	"postId": ObjectID,
+	"author": String,
+	"content": String,
+	"date": Date,
+
+}
+]
+}
+
+
+Relationships:
+
+1.Products with category:one to many
+2.User with blog:one to many
+3.Blog with comments:one to many.

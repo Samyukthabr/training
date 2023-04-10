@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <title>Calculator</title>
+    <style>
+      body {
+     background-color: lightblue;
+}{
+        font-family: Lavenderia;
+      }
+      h1 {
+        text-align: center;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      input[type="number"] {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+      }
+      button {
+        display: inline-block;
+         background-color: grey;
+      }
+      button:hover {
+        background-color: lightgreen;
+      }
+      #result {
+        font-weight: bold;
+        text-align: center;
+       
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Calculator</h1>
+    <form>
+      <label for="num1">Number 1:</label>
+      <input type="number" id="num1" name="num1" required>
+      <label for="num2">Number 2:</label>
+      <input type="number" id="num2" name="num2" required>
+      <br>
+      <button type="button" id="add">+</button>
+      <button type="button" id="subtract">-</button>
+      <button type="button" id="multiply">*</button>
+      <button type="button" id="divide">/</button>
+      <button type="button" id="modulus">%</button>
+    </form>
+    <div id="result"></div>
+    <script>
+      const num1Input = document.getElementById('num1');
+      const num2Input = document.getElementById('num2');
+      const addButton = document.getElementById('add');
+      const subtractButton = document.getElementById('subtract');
+      const multiplyButton = document.getElementById('multiply');
+      const divideButton = document.getElementById('divide');
+      const modulusButton = document.getElementById('modulus');
+      const resultDiv = document.getElementById('result');
+      
+      addButton.addEventListener('click', () => {
+        const num1 = parseFloat(num1Input.value);
+        const num2 = parseFloat(num2Input.value);
+        const result = num1 + num2;
+        alert("Result:"+result);
+      });
+      
+      subtractButton.addEventListener('click', () => {
+        const num1 = parseFloat(num1Input.value);
+        const num2 = parseFloat(num2Input.value);
+        const result = num1 - num2;
+        alert("Result:"+result);
+      });
+      
+      multiplyButton.addEventListener('click', () => {
+        const num1 = parseFloat(num1Input.value);
+        const num2 = parseFloat(num2Input.value);
+        const result = num1 * num2;
+        alert("Result:"+result);
+      });
+      
+      divideButton.addEventListener('click', () => {
+        const num1 = parseFloat(num1Input.value);
+        const num2 = parseFloat(num2Input.value);
+        const result = num1 / num2;
+        alert("Result:"+result);
+      });
+
+      modulusButton.addEventListener('click', () => {
+        const num1 = parseFloat(num1Input.value);
+        const num2 = parseFloat(num2Input.value);
+        const result = num1 % num2;
+        alert("Result:"+result);
+      });
+
+    </script>
+  </body>
+</html>

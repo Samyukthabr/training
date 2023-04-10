@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My JavaScript Program</title>
+  </head>
+  <body>
+    <h4>Hello TechnoTree World!</h4>
+    <script> 
+
+var today = new Date();
+var day = today.getDate();
+var month = today.getMonth() + 1; // Months are zero-indexed
+var year = today.getFullYear();
+
+var date1 = month + "-" + day + "-" + year;
+var date2 = month + "/" + day + "/" + year;
+var date3 = day + "-" + month + "-" + year;
+var date4 = day + "/" + month + "/" + year;
+
+document.write("mm-dd-yyyy format: " + date1 + "<br>");
+document.write("mm/dd/yyyy format: " + date2 + "<br>");
+document.write("dd-mm-yyyy format: " + date3 + "<br>");
+document.write("dd/mm/yyyy format: " + date4);
+
+</script>
+
+  
+  </body>
+</html>
