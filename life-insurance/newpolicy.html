@@ -1,0 +1,41 @@
+<h2>New Policy</h2>
+<style>
+  body{
+  background-image: url('https://movoinsurance.com/wp-content/uploads/2020/12/City_GIF_01.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+</style>
+<form>
+  <label for="customerName">Customer Name:</label>
+  <input type="text" id="customerName" name="customerName"><br><br>
+
+  <label for="policyType">Policy Type:</label>
+  <select id="policyType" name="policyType">
+    <option value="vehicle">Vehicle</option>
+    <option value="home">Home</option>
+    <option value="life">Life</option>
+  </select><br><br>
+
+  <label for="policyAmount">Policy Amount:</label>
+  <input type="number" id="policyAmount" name="policyAmount"><br><br>
+
+  <button type="button" onclick="generatePolicyNumber()">Generate Policy Number</button><br><br>
+
+  <label for="policyNumber">Policy Number:</label>
+  <input type="text" id="policyNumber" name="policyNumber" readonly>
+</form>
+
+<script>
+    function generatePolicyNumber() {
+  const policyType = document.getElementById("policyType").value;
+  const policyAmount = document.getElementById("policyAmount").value;
+
+  const timestamp = Date.now().toString().slice(-6);
+  const randomNumber = Math.floor(Math.random() * 900) + 100;
+  const policyNumber = `${policyType.toUpperCase()}${policyAmount.toString().padStart(6, "0")}${timestamp}${randomNumber}`;
+
+  document.getElementById("policyNumber").value = policyNumber;
+}
+
+</script>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Claim Insurance Policy</title>
+</head>
+<body>
+  <h1>Claim Insurance Policy</h1>
+  <form method="post" action="process_claim.php">
+    <label for="policy_number">Policy Number:</label>
+    <input type="text" id="policy_number" name="policy_number" required><br><br>
+
+    <label for="claim_amount">Claim Amount:</label>
+    <input type="number" id="claim_amount" name="claim_amount" required><br><br>
+
+    <label for="claim_date">Claim Date:</label>
+    <input type="date" id="claim_date" name="claim_date" required><br><br>
+
+    <label for="claim_reason">Claim Reason:</label>
+    <textarea id="claim_reason" name="claim_reason" required></textarea><br><br>
+
+    <input type="submit" value="Submit Claim">
+  </form>
+
+  <script>
+    const claimForm = document.querySelector('form');
+
+claimForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const policyNumber = claimForm.elements['policy_number'].value;
+  const claimAmount = claimForm.elements['claim_amount'].value;
+  const claimDate = claimForm.elements['claim_date'].value;
+  const claimReason = claimForm.elements['claim_reason'].value;
+
+  // Perform validation on the form inputs
+  if (!policyNumber || !claimAmount || !claimDate || !claimReason) {
+    alert('Please fill in all fields');
+    return;
+  }
+  if (isNaN(claimAmount) || claimAmount <= 0) {
+    alert('Claim amount must be a positive number');
+  
+  }
+  else{
+    alert('The policy claimed successfully');
+  }
+
+  // Send the form data to the server using an AJAX request
+});
+
+  </script>
+</body>
+</html>

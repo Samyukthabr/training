@@ -1,0 +1,81 @@
+<h2>Update Insurance Policy</h2>
+    <style>
+        /* Style the form inputs */
+label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  body{
+    background-image: url('https://i.pinimg.com/originals/b1/fa/42/b1fa424883ad046912ad53cc7e33ffd2.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  input[type="text"] {
+    width: 40%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+  
+  /* Style the submit button */
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  /* Style the policy details */
+  #policy-details {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+    </style>
+    <body>
+<form id="policy-form">
+    <label for="policy-number">Policy Number:</label>
+    <input type="text" id="policy-number" name="policy-number">
+  
+    <label for="policy-holder">Policy Holder:</label>
+    <input type="text" id="policy-holder" name="policy-holder">
+  
+    <label for="coverage-amount">Coverage Amount:</label>
+    <input type="text" id="coverage-amount" name="coverage-amount"><br>
+  
+    <button type="submit">Update Policy</button>
+  </form>
+  
+  <script>
+    const form = document.querySelector('#policy-form');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault(); // Prevent form from submitting and refreshing the page
+      
+      const policyNumber = document.querySelector('#policy-number').value;
+      const policyHolder = document.querySelector('#policy-holder').value;
+      const coverageAmount = document.querySelector('#coverage-amount').value;
+      
+      console.log(`Policy Number: ${policyNumber}`);
+      console.log(`Policy Holder: ${policyHolder}`);
+      console.log(`Coverage Amount: ${coverageAmount}`);
+      
+      // You can also update the page with the values entered by the user
+      // For example:
+      // document.querySelector('#policy-number-display').textContent = policyNumber;
+    });
+    
+  
+ 
+</script>  
+</body>
