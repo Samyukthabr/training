@@ -1,0 +1,61 @@
+<h2>Deposit</h2>
+<form>
+    <label for="account-number">Account Number:</label>
+    <input type="text" id="account-number" name="account-number" required><br><br>
+
+    
+    <label for="deposit-amount">Deposit Amount:</label>
+    <input type="number" id="deposit-amount" name="deposit-amount" required><br><br>
+    
+    <input type="submit" value="Deposit">
+  </form>
+  
+  <div id="balance-container">
+    <p id="current-balance">Current Balance: Rs.0.00</p>
+    <p id="new-balance" style="display:none">New Balance: Rs.0.00</p>
+  </div>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/acd8c887547465.5dee0bfc4c942.gif');
+    }
+  </style>
+  <script>
+  // define a variable to hold the current balance
+let currentBalance = 0;
+
+// get the form element and add an event listener for form submission
+const depositForm = document.querySelector('form');
+depositForm.addEventListener('submit', function(event) {
+  event.preventDefault(); // prevent the form from submitting normally
+  
+  // get the input values from the form
+  const accountNumber = document.querySelector('#account-number').value;
+  const depositAmount = Number(document.querySelector('#deposit-amount').value);
+  
+  // perform validation on the input values
+  if (accountNumber === '') {
+    alert('Please enter an account number');
+    return;
+  }
+  
+  if (depositAmount <= 0) {
+    alert('Please enter a valid deposit amount');
+    return;
+  }
+  
+  // update the current balance and calculate the new balance
+  currentBalance += depositAmount;
+  const newBalance = currentBalance.toFixed(2);
+  
+  // update the UI with the new balance
+  const currentBalanceElement = document.querySelector('#current-balance');
+  const newBalanceElement = document.querySelector('#new-balance');
+  
+  currentBalanceElement.textContent = `Current Balance: $${newBalance}`;
+  newBalanceElement.textContent = `New Balance: $${newBalance}`;
+  newBalanceElement.style.display = 'block';
+});
+</script>

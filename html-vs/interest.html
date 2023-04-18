@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Interest Calculator</title>
+    <h2>Interest Calculator</h2>
+    <style>
+        label {
+            display: inline-block;
+            width: 150px;
+          }
+          body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            background-image: url('https://i.pinimg.com/originals/7c/83/af/7c83afe4915fc72564941ab32ff1e37d.gif');
+          }
+    </style>
+  </head>
+  <body>
+    <h1>Interest Calculator</h1>
+    <form>
+      <label for="account-number">Account Number:</label>
+      <input type="text" id="account-number"><br>
+      <label for="interest-rate">Interest Rate (%):</label>
+      <input type="text" id="interest-rate"><br>
+      <label for="balance">Balance:</label>
+      <input type="text" id="balance"><br>
+      <label for="time-period">Time Period (years):</label>
+      <input type="text" id="time-period"><br>
+      <button type="button" onclick="calculateInterest()">Calculate Interest</button>
+    </form>
+    <div id="result"></div>
+    <script>
+        function calculateInterest() {
+            const accountNumber = document.getElementById("account-number").value;
+            const interestRate = parseFloat(document.getElementById("interest-rate").value);
+            const balance = parseFloat(document.getElementById("balance").value);
+            const timePeriod = parseFloat(document.getElementById("time-period").value);
+            
+            const interest = balance * (interestRate / 100) * timePeriod;
+            const totalBalance = balance + interest;
+            
+            document.getElementById("result").innerHTML = "Account Number: " + accountNumber + "<br>" +
+                                                            "Interest Rate: " + interestRate.toFixed(2) + "%<br>" +
+                                                            "Starting Balance: $" + balance.toFixed(2) + "<br>" +
+                                                            "Time Period: " + timePeriod.toFixed(2) + " years<br>" +
+                                                            "Interest Earned: Rs" + interest.toFixed(2) + "<br>" +
+                                                            "Total Balance: Rs" + totalBalance.toFixed(2);
+          }
+          
+    </script>
+  </body>
+</html>

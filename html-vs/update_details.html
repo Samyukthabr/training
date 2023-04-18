@@ -1,0 +1,63 @@
+<h2>Update Details</h2>
+<form id="personal-info-form">
+    <h2>Update Personal Information</h2>
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+    
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" placeholder="Enter your address" required></textarea>
+    
+    <input type="submit" value="Update">
+  </form>
+  
+  <div id="error-msg"></div>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      background-image: url('https://i.pinimg.com/originals/7c/83/af/7c83afe4915fc72564941ab32ff1e37d.gif');
+    }
+  </style>
+  
+  <script>
+    const personalInfoForm = document.getElementById('personal-info-form');
+    const errorMsg = document.getElementById('error-msg');
+    
+    personalInfoForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      
+      const name = personalInfoForm.elements.name.value;
+      const email = personalInfoForm.elements.email.value;
+      const phone = personalInfoForm.elements.phone.value;
+      const address = personalInfoForm.elements.address.value;
+      
+      // Check for invalid phone number format
+      const phoneRegex = /^\d{10}$/;
+      if (!phoneRegex.test(phone)) {
+        errorMsg.textContent = 'Invalid phone number format. Please enter a 10-digit phone number.';
+        return;
+      }
+      
+      // Check for invalid email format
+      const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+      if (!emailRegex.test(email)) {
+        errorMsg.textContent = 'Invalid email format. Please enter a valid email.';
+        return;
+      }
+      
+      // Update personal information in the system
+      // Code for updating personal information goes here...
+      
+      // Show success message
+      errorMsg.textContent = 'Personal information updated successfully!';
+    });
+  </script>
+  
+  

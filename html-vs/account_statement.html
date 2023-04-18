@@ -1,0 +1,87 @@
+<h2>Account Statement</h2>
+<form id="statement-form">
+    <label for="account-number">Account Number:</label>
+    <input type="text" id="account-number" name="account-number" required><br><br>
+    
+    <label for="start-date">Start Date:</label>
+    <input type="date" id="start-date" name="start-date" required><br><br>
+    
+    <label for="end-date">End Date:</label>
+    <input type="date" id="end-date" name="end-date" required><br><br>
+    
+    <input type="submit" value="Generate Statement">
+  </form>
+  
+  <div id="statement"></div>
+  
+  <style>
+  #statement {
+    font-weight: bold;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    background-image: url('https://i.pinimg.com/originals/7c/83/af/7c83afe4915fc72564941ab32ff1e37d.gif');
+  }
+</style>
+
+
+<script>
+    const statementForm = document.getElementById('statement-form');
+const statementDiv = document.getElementById('statement');
+
+statementForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  const accountNumber = document.getElementById('account-number').value;
+  const startDate = document.getElementById('start-date').value;
+  const endDate = document.getElementById('end-date').value;
+  
+  // Perform server-side validation of the account number, start date, and end date
+  
+  // If validation is successful, generate the statement and display it
+  const statement = generateStatement(accountNumber, startDate, endDate);
+  statementDiv.innerHTML = statement;
+});
+
+function generateStatement(accountNumber, startDate, endDate) {
+  // This function would normally make a server-side call to retrieve the account statement from the database
+  // For the purposes of this example, we'll just simulate the retrieval and return a hardcoded statement
+  const statement = `
+    <h2>Account Statement</h2>
+    <p>Account Number: ${accountNumber}</p>
+    <p>Start Date: ${startDate}</p>
+    <p>End Date: ${endDate}</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2022-01-01</td>
+          <td>Deposit</td>
+          <td>Rs.1000.00</td>
+        </tr>
+        <tr>
+          <td>2022-02-01</td>
+          <td>Withdrawal</td>
+          <td>-RS.500.00</td>
+        </tr>
+        <tr>
+          <td>2022-03-01</td>
+          <td>Deposit</td>
+          <td>Rs.2000.00</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Current Balance: Rs.2500.00</p>
+  `;
+  return statement;
+}
+
+</script>
+  

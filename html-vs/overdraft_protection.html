@@ -1,0 +1,71 @@
+<h2>Overdraft Protection</h2>
+<form id="withdrawal-form">
+    <label for="account-number">Account Number:</label>
+    <input type="text" id="account-number" name="account-number" required><br><br>
+    
+    <label for="amount">Withdrawal Amount:</label>
+    <input type="number" id="amount" name="amount" required><br><br>
+    
+    <input type="submit" value="Withdraw">
+  </form>
+  
+  <div id="result"></div>
+
+<style>
+  .error {
+    color: red;
+    font-weight: bold;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    background-image: url('https://i.pinimg.com/originals/7c/83/af/7c83afe4915fc72564941ab32ff1e37d.gif');
+  }
+</style>
+
+<script>
+    const withdrawalForm = document.getElementById('withdrawal-form');
+const resultDiv = document.getElementById('result');
+
+withdrawalForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  const accountNumber = document.getElementById('account-number').value;
+  const amount = Number(document.getElementById('amount').value);
+  
+  // Perform server-side validation of the account number and withdrawal amount
+  
+  // If validation is successful, process the withdrawal
+  processWithdrawal(accountNumber, amount);
+});
+
+function processWithdrawal(accountNumber, amount) {
+  // This function would normally make a server-side call to retrieve the account balance from the database
+  // For the purposes of this example, we'll just simulate the retrieval and return a hardcoded balance
+  const balance = 1000;
+  
+  // Check if the account has overdraft protection enabled
+  const overdraftEnabled = true;
+  
+  if (amount > balance && !overdraftEnabled) {
+    // If the withdrawal amount is greater than the available balance and overdraft protection is not enabled, display an error
+    resultDiv.innerHTML = '<p class="error">Insufficient funds</p>';
+  } else {
+    // If the withdrawal amount is less than or equal to the available balance, process the withdrawal and update the balance
+    let newBalance = balance - amount;
+    if (newBalance < 0 && overdraftEnabled) {
+      // If the new balance is negative and overdraft protection is enabled, allow the withdrawal and add the overdraft amount to the balance
+      newBalance = 0;
+      resultDiv.innerHTML = `<p>Withdrawal of Rs.${amount.toFixed(2)} successful</p><p>Overdraft amount of $${Math.abs(newBalance).toFixed(2)} added to account balance</p>`;
+    } else {
+      // If the new balance is not negative or overdraft protection is not enabled, allow the withdrawal and update the balance
+      resultDiv.innerHTML = `<p>Withdrawal of Rs.${amount.toFixed(2)} successful</p>`;
+    }
+    
+    // This function would normally make a server-side call to update the account balance in the database
+    // For the purposes of this example, we'll just log the new balance to the console
+    console.log(`New balance for account ${accountNumber}: $${newBalance.toFixed(2)}`);
+  }
+}
+
+</script>
