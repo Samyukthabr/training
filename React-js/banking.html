@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Banking System</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .login-container,
+        .balance-container,
+        .update-info-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+        
+       
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        label {
+            margin-top: 10px;
+        }
+        
+        input[type="text"],
+        input[type="password"],
+        input[type="number"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        button:hover {
+            opacity: 0.8;
+        }
+        
+    </style>
+</head>
+<body>
+	<div class="login-container">
+		<h1>Login</h1>
+		<form id="login-form">
+			<label for="username">Username:</label>
+			<input type="text" id="username" name="username">
+
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="password">
+
+			<button type="submit">Login</button>
+		</form>
+		<div id="login-error" class="error-message"></div>
+	</div>
+
+	<div class="balance-container hidden">
+		<h1>Account Balance</h1>
+		<div id="account-balance"></div>
+
+		<h2>Transfer Funds</h2>
+		<form id="transfer-form">
+			<label for="transfer-amount">Amount:</label>
+			<input type="number" id="transfer-amount" name="transfer-amount" min="0" step="0.01">
+
+			<label for="transfer-account">Account:</label>
+			<input type="text" id="transfer-account" name="transfer-account">
+
+			<button type="submit">Transfer</button>
+		</form>
+		<div id="transfer-error" class="error-message"></div>
+	</div>
+
+	<div class="update-info-container hidden">
+		<h1>Update Personal Information</h1>
+		<form id="update-form">
+			<label for="address">Address:</label>
+			<input type="text" id="address" name="address">
+
+			<label for="phone">Phone:</label>
+			<input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="123-456-7890">
+
+			<button type="submit">Update</button>
+		</form>
+		<div id="update-error" class="error-message"></div>
+	</div>
+
+	<script >
+        const loginForm = document.getElementById('login-form');
+const usernameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
+const loginError = document.getElementById('login-error');
+
+const balanceContainer = document.querySelector('.balance-container');
+const accountBalance = document.getElementById('account-balance');
+const transferForm = document.getElementById('transfer-form');
+const transferAmountInput = document.getElementById('transfer-amount');
+const transferAccountInput = document.getElementById('transfer-account');
+const transferError = document.getElementById('transfer-error');
+
+const updateInfoContainer = document.querySelector('.update-info-container');
+const updateForm = document.getElementById('update-form');
+const addressInput = document.getElementById('address');
+const phoneInput = document.getElementById('phone');
+const updateError = document.getElementById('update-error');
+
+let isLoggedIn = false;
+let accountBalanceValue = 0;
+
+// Login form submit event listener
+loginForm.addEventListener('submit', (event) => {
+	event.preventDefault();
+
+	const username = usernameInput.value;
+	const password = passwordInput.value;
+
+	if (isValidLogin(username, password)) {
+		isLoggedIn = true;
+		accountBalanceValue = getAccountBalance(username);
+
+		loginError.textContent = '';
+		loginForm.reset();
+		usernameInput.blur();
+		passwordInput.blur();
+
+		updateAccountBalance();
+		showBalanceContainer();
+	} else {
+		loginError.textContent = 'Invalid username or password';
+	}
+});
+
+// Transfer form submit event listener
+transferForm.addEventListener('submit', (event) => {
+	event.preventDefault();
+
+	const amount = Number(transferAmountInput.value);
+	const account = transferAccountInput.value;
+
+	if (isValidTransfer(amount, account)) {
+		accountBalanceValue -= amount;
+
+		transferError.textContent = '';
+		transferForm.reset();
+		transferAmountInput.blur();
+		transferAccountInput.blur();
+
+		updateAccountBalance();
+	} else {
+		transferError.textContent = 'Invalid transfer amount or account number';
+	}
+});
+
+// Update form submit event listener
+updateForm.addEventListener('submit', (event) => {
+	event.preventDefault();
+
+	const address = addressInput.value;
+	const phone = phoneInput.value;
+
+	if (isValidUpdate(address, phone)) {
+		updateError.textContent = '';
+		updateForm.reset();
+		addressInput.blur();
+		phoneInput.blur();
+	} else {
+		updateError.textContent = 'Invalid address or phone number format';
+	}
+});
+
+// Helper function to check if login credentials are valid
+function isValidLogin(username, password) {
+	// Replace this with actual login validation code
+	return (username === 'Samyuktha' && password === 'Sam@123');
+}
+
+// Helper function to get account balance
+function getAccountBalance(username) {
+	// Replace this with actual code to get account balance from database
+	return 1000;
+}
+
+// Helper function to check if transfer amount and account number are valid
+function isValidTransfer(amount, account) {
+	// Replace this with actual code to validate transfer
+	return (amount > 0 && amount <= accountBalanceValue && account !== '');
+}
+
+// Helper function to check if address and phone number are valid
+function isValidUpdate(address, phone) {
+	// Replace this with actual code to validate address and phone number
+	return (address !== '' && phone.match(/^\d{3}-\d{3}-\d{4}$/));
+}
+
+// Helper function to update account balance text
+function updateAccountBalance() {
+	accountBalance.textContent = `Your account balance is $${accountBalanceValue.toFixed(2)}`;
+}
+
+// Helper function to show balance container and hide login container
+function showBalanceContainer() {
+	loginForm.classList.add('hidden');
+	balanceContainer.classList.remove('hidden');
+	updateInfoContainer.classList.add('hidden');
+}
+
+// function to transfer funds
+function transferFunds() {
+    var fromAccount = document.getElementById("fromAccount").value;
+    var toAccount = document.getElementById("toAccount").value;
+    var transferAmount = document.getElementById("transferAmount").value;
+    
+    // check if transfer amount is greater than available balance
+    if (transferAmount > parseFloat(accountBalance)) {
+    alert("Insufficient balance in account!");
+    return false;
+    }
+    
+    // check if transfer amount is greater than zero
+    if (transferAmount <= 0) {
+    alert("Transfer amount should be greater than zero!");
+    return false;
+    }
+    
+    // update account balances
+    accountBalance = parseFloat(accountBalance) - parseFloat(transferAmount);
+    var toAccountBalance = parseFloat(accounts[toAccount]) + parseFloat(transferAmount);
+    accounts[fromAccount] = accountBalance.toFixed(2);
+    accounts[toAccount] = toAccountBalance.toFixed(2);
+    
+    // display updated balances
+    document.getElementById("accountBalance").innerHTML = "Account Balance: $" + accountBalance.toFixed(2);
+    document.getElementById("toAccountBalance").innerHTML = "Account Balance: $" + toAccountBalance.toFixed(2);
+    
+    // display success message
+    alert("Transfer successful!");
+    return true;
+    }
+    
+    // function to update personal information
+    function updateInfo() {
+    var address = document.getElementById("address").value;
+    var phone = document.getElementById("phone").value;
+    
+    // check if phone number is in valid format
+    var phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(phone)) {
+    alert("Invalid phone number format!");
+    return false;
+    }
+    
+    // update personal information
+    userAddress = address;
+    userPhone = phone;
+    
+    // display success message
+    alert("Personal information updated successfully!");
+    return true;
+    }
+    
+    // function to log out of the system
+    function logout() {
+    // clear session storage and redirect to login page
+    sessionStorage.clear();
+    window.location.href = "login.html";
+    }
+
+    </script>
+</body>
+</html>

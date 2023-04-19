@@ -1,0 +1,146 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        background-image: url('https://i.pinimg.com/originals/7c/83/af/7c83afe4915fc72564941ab32ff1e37d.gif');
+      }
+      
+      .container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+      }
+      
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      
+      label {
+        display: block;
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+      
+      input[type="text"], input[type="password"] {
+        width: 85%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+      }
+      
+      button {
+        display: block;
+        margin: 0 auto;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      button:disabled {
+        background-color: #ddd;
+        color: #777;
+        cursor: not-allowed;
+      }
+      
+      button:hover:not(:disabled) {
+        background-color: #0069d9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Login</h1>
+      <form>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" oninput="validateUsername()">
+        <span id="username-error" style="color:red"></span>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" oninput="validatePassword()">
+        <span id="password-error" style="color:red"></span>
+        <button type="submit" id="login-button" disabled onclick="login()">Login</button>
+      </form>
+      <div>
+        <a href="#" onclick="forgotPassword()">Forgot password?</a>
+      </div>
+      <div id="error-message" style="color:red"></div>
+    </div>
+    
+    <script>
+      function validateUsername() {
+        var username = document.getElementById("username").value;
+        var usernameError = document.getElementById("username-error");
+        if(username === "") {
+          usernameError.innerText = "Username is required.";
+        } else {
+          usernameError.innerText = "";
+        }
+      }
+      
+      function validatePassword() {
+        var password = document.getElementById("password").value;
+        var passwordError = document.getElementById("password-error");
+        if(password === "") {
+          passwordError.innerText = "Password is required.";
+        } else {
+          passwordError.innerText = "";
+        }
+      }
+      
+      function login() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        if(username === "Samyuktha" && password === "tttraining") {
+          alert("Login successful!");
+        } else {
+          alert("Invalid username or password.");
+        }
+      }
+      
+      function forgotPassword() {
+        alert("Redirecting to password reset page...");
+        // You can add code to redirect to the password reset page here
+      }
+      
+      document.addEventListener("DOMContentLoaded", function() {
+        var usernameInput = document.getElementById("username");
+        var passwordInput = document.getElementById("password");
+        var loginButton = document.getElementById("login-button");
+        
+        usernameInput.addEventListener("input", function() {
+          validateUsername();
+          if(usernameInput.value !== "" && passwordInput.value !== "") {
+            loginButton.disabled = false;
+          } else {
+            loginButton.disabled = true;
+          }
+        });
+        
+        passwordInput.addEventListener("input", function() {
+          validatePassword();
+          if(usernameInput.value !== "" && passwordInput.value !== "") {
+            loginButton.disabled = false;
+          } else {
+            loginButton.disabled = true;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
+
+
